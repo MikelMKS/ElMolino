@@ -78,93 +78,96 @@ class VentasSemanalController extends Controller
 
     public function cargaLayoutVentaSemanal(Request $request){
         $response = array('status' => 0,'msg' => ''); 
-
+    
         $file = $request->file('layout');
         $tabla = array();
         $ticket = null;
-
+    
         if($file == null){
             $response['status'] = '1';
             $response['msg'] = 'SELECCIONA UN ARCHIVO';
-        }else{
-            $path = $request->file('layout')->getRealPath();
-            // Cargar la hoja de Excel
-            $spreadsheet = IOFactory::load($path);
-            $sheet = $spreadsheet->getActiveSheet();
-
-            // Obtener la matriz de celdas
-            $data = [];
-            foreach ($sheet->getRowIterator() as $row) {
-                $rowData = [];
-                $cellIterator = $row->getCellIterator();
-                $cellIterator->setIterateOnlyExistingCells(false); // Incluye celdas vacías
-
-                foreach ($cellIterator as $cell) {
-                    $cellValue = $cell->getValue();
-                    $columnName = $cell->getColumn();
-                    $rowData[$columnName] = $cellValue;
-                }
-
-                $data[] = $rowData;
-            }
-
-            $foundTicket = false;
-
-            foreach($data as $key => $value){
-                // Verificar si el valor de 'F' es 'ticket' y no se ha encontrado antes
-                if ($value['A'] === 'Ticket' && !$foundTicket) {
-                    $foundTicket = true; // Marcamos que hemos encontrado 'ticket'
-                }
-                if ($value['A'] === null) {
-                    $foundTicket = false;
-                }
-                if ($foundTicket) {
-                    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    if(!empty($value['F'])){
-                        if($ticket != null){
-                            array_push($tabla,$ticket);
-                            $ticket = null;
-                        }
-                        $folio = $value['F'];
-                        $nombre = $value['H'];
-                        $ticket = array('folio' => $folio, 'nombre' => $nombre);
-                    }else{
-                        $producto = $value['E'];
-                        $cantidad = str_replace(str_split(' ,'), '', $value['B']);
-                        $precio = str_replace(str_split('$ ,'), '', $value['S']);
-
-                        $grupoBusca = DB::select("SELECT idGrupo FROM productos AS p
-                        LEFT JOIN grupos_productos AS gp ON p.id = gp.idProducto
-                        WHERE p.nombre LIKE '$producto'");
-                        if($grupoBusca != null){
-                            $grupo = $grupoBusca[0]->idGrupo;
-                        }else{
-                            $response['status'] = '1';
-                            $response['msg'] = 'EL PRODUCTO "'.$producto.'" DE LA FILA #'.($key + 1).' NO EXISTE EN LA BASE DE DATOS';
-                            break;
-                        }
-                        if(in_array('g'.$grupo,$ticket)){
-                            array_push($tabla,$ticket);
-                            $ticket = array('folio' => $folio, 'nombre' => $nombre);
-                        }
-
-                        $ticket['g'.$grupo] = 'g'.$grupo;
-                        $ticket['cantidad_'.$grupo] = $cantidad;
-                        $ticket['precio_'.$grupo] = $precio;
+        } else {
+            try {
+                $path = $request->file('layout')->getRealPath();
+                // Cargar la hoja de Excel
+                $spreadsheet = IOFactory::load($path);
+                $sheet = $spreadsheet->getActiveSheet();
+    
+                // Obtener la matriz de celdas
+                $data = [];
+                foreach ($sheet->getRowIterator() as $row) {
+                    $rowData = [];
+                    $cellIterator = $row->getCellIterator();
+                    $cellIterator->setIterateOnlyExistingCells(false); // Incluye celdas vacías
+    
+                    foreach ($cellIterator as $cell) {
+                        $cellValue = $cell->getValue();
+                        $columnName = $cell->getColumn();
+                        $rowData[$columnName] = $cellValue;
                     }
-                    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+                    $data[] = $rowData;
                 }
+    
+                $foundTicket = false;
+    
+                foreach($data as $key => $value){
+                    // Verificar si el valor de 'F' es 'ticket' y no se ha encontrado antes
+                    if ($value['A'] === 'Ticket' && !$foundTicket) {
+                        $foundTicket = true; // Marcamos que hemos encontrado 'ticket'
+                    }
+                    if ($value['A'] === null) {
+                        $foundTicket = false;
+                    }
+                    if ($foundTicket) {
+                        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        if(!empty($value['F'])){
+                            if($ticket != null){
+                                array_push($tabla,$ticket);
+                                $ticket = null;
+                            }
+                            $folio = $value['F'];
+                            $nombre = $value['H'];
+                            $ticket = array('folio' => $folio, 'nombre' => $nombre);
+                        }else{
+                            $producto = $value['E'];
+                            $cantidad = str_replace(str_split(' ,'), '', $value['B']);
+                            $precio = str_replace(str_split('$ ,'), '', $value['S']);
+    
+                            $grupoBusca = DB::select("SELECT idGrupo FROM productos AS p
+                            LEFT JOIN grupos_productos AS gp ON p.id = gp.idProducto
+                            WHERE p.nombre LIKE '$producto'");
+                            if($grupoBusca != null){
+                                $grupo = $grupoBusca[0]->idGrupo;
+                            }else{
+                                $response['status'] = '1';
+                                $response['msg'] = 'EL PRODUCTO "'.$producto.'" DE LA FILA #'.($key + 1).' NO EXISTE EN LA BASE DE DATOS, DEBES DARLO DE ALTA';
+                                break;
+                            }
+                            if(in_array('g'.$grupo,$ticket)){
+                                array_push($tabla,$ticket);
+                                $ticket = array('folio' => $folio, 'nombre' => $nombre);
+                            }
+    
+                            $ticket['g'.$grupo] = 'g'.$grupo;
+                            $ticket['cantidad_'.$grupo] = $cantidad;
+                            $ticket['precio_'.$grupo] = $precio;
+                        }
+                        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    }
+                }
+                array_push($tabla,$ticket);
+            } catch (\Exception $e) {
+                $response['status'] = '1';
+                $response['msg'] = $e->getMessage();
             }
-            array_push($tabla,$ticket);
         }
-
+    
         if($response['status'] != 1){
             echo json_encode($tabla);
-        }else{
+        } else {
             echo json_encode($response);
         }
-        // return $tabla;
-
     }
 
     public function descagaLayoutSemanal(Request $request){
