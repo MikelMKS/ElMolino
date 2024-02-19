@@ -30,14 +30,15 @@ $("#cargaLayoutVentaSemanal").on('submit', function(e){
             swalLoading();
         },
         success: function(response){
-            if(response.status !== 'undefined'){
+            if(response.status !== undefined){
                 swalTimer('warning', response.msg, 2500);
             } else {
+                swalTimer('success', 'GENERANDO ARCHIVO', 1000);
                 window.location.href = ('{{ route('descagaLayoutSemanal') }}' + '?tabla=' + encodeURIComponent(JSON.stringify(response)));
             }
         },
-        error: function (xhr) {
-            swalTimmerWarning(xhr.responseJSON.error);
+        error: function (error) {
+            swalTimer('error', error, 2500);
         }
     });
 });
