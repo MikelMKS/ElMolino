@@ -43,4 +43,18 @@ function hacerColorMasClaro($colorOriginal, $cantidad = 100) {
     return $nuevoColor;
 }
 
+function noVacio($val,$nombre,$response){
+    if($response['sta'] == '0'){
+        if(empty($val)){
+            $response['sta'] = '1';
+            $response['msg'] = "DEBES LLENAR EL CAMPO '".$nombre."'";
+        }else{
+            $response['sta'] = '0';
+            $response['msg'] = "";
+        }
+    }
+
+    return $response;
+}
+
 ?>

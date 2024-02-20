@@ -85,7 +85,6 @@ function swalConfirm($title){
       confirmButtonText: 'CONFIRMAR',
       showCancelButton: true,
       cancelButtonText: 'CANCELAR',
-      dangerMode: true,
   });
 }
 

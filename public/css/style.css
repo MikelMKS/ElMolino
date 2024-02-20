@@ -10,7 +10,7 @@
 --------------------------------------------------------------*/
 :root {
   scroll-behavior: smooth;
-  --color-red: rgb(255, 153, 55);
+  --color-orange: rgb(255, 153, 55);
 }
 
 body {
@@ -262,7 +262,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 20px 0 15px 0;
   font-size: 18px;
   font-weight: 500;
-  color: var(--color-red);
+  color: var(--color-orange);
   font-family: "Poppins", sans-serif;
 }
 .card-title span {
@@ -310,7 +310,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: none;
 }
 .accordion-button:not(.collapsed) {
-  color: var(--color-red);
+  color: var(--color-orange);
   background-color: #f6f9ff;
 }
 
@@ -387,7 +387,7 @@ h1, h2, h3, h4, h5, h6 {
 .logo span {
   font-size: 26px;
   font-weight: 700;
-  color: var(--color-red);
+  color: var(--color-orange);
   font-family: "Nunito", sans-serif;
 }
 
@@ -405,7 +405,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 32px;
   padding-left: 10px;
   cursor: pointer;
-  color: var(--color-red);
+  color: var(--color-orange);
 }
 .header .search-bar {
   min-width: 360px;
@@ -437,7 +437,7 @@ h1, h2, h3, h4, h5, h6 {
 .header .search-form input {
   border: 0;
   font-size: 14px;
-  color: var(--color-red);
+  color: var(--color-orange);
   border: 1px solid rgba(1, 41, 112, 0.2);
   padding: 7px 38px 7px 8px;
   border-radius: 3px;
@@ -456,7 +456,7 @@ h1, h2, h3, h4, h5, h6 {
   background: none;
 }
 .header .search-form button i {
-  color: var(--color-red);
+  color: var(--color-orange);
 }
 
 /*--------------------------------------------------------------
@@ -471,11 +471,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 .header-nav .nav-icon {
   font-size: 25px;
-  color: var(--color-red);
+  color: var(--color-orange);
   padding: 0.5rem 0.5rem !important;
 }
 .header-nav .nav-profile {
-  color: var(--color-red);
+  color: var(--color-orange);
 }
 .header-nav .nav-profile img {
   max-height: 36px;
@@ -667,7 +667,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: var(--color-red);
+  color: var(--color-orange);
   transition: 0.3;
   background: #f6f9ff;
   padding: 10px 15px;
@@ -676,7 +676,7 @@ h1, h2, h3, h4, h5, h6 {
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-right: 10px;
-  color: var(--color-red);
+  color: var(--color-orange);
 }
 .sidebar-nav .nav-link.collapsed {
   color: #5c6574;
@@ -768,7 +768,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .dashboard .info-card h6 {
   font-size: 28px;
-  color: var(--color-red);
+  color: var(--color-orange);
   font-weight: 700;
   margin: 0;
   padding: 0;
@@ -851,7 +851,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 5px;
 }
 .dashboard .news h4 a {
-  color: var(--color-red);
+  color: var(--color-orange);
   transition: 0.3s;
 }
 .dashboard .news h4 a:hover {
@@ -912,7 +912,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #fff;
   border-radius: 0.25rem;
   text-align: center;
-  color: var(--color-red);
+  color: var(--color-orange);
   padding: 15px 0;
 }
 .iconslist i {
@@ -955,7 +955,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.3s;
 }
 .profile .profile-card .social-links a:hover {
-  /* color: var(--color-red); */
+  /* color: var(--color-orange); */
   cursor: pointer;
 }
 .profile .profile-overview .row {
@@ -963,7 +963,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 15px;
 }
 .profile .profile-overview .card-title {
-  color: var(--color-red);
+  color: var(--color-orange);
 }
 .profile .profile-overview .label {
   font-weight: 600;
@@ -1033,7 +1033,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .contact .info-box h3 {
   font-size: 20px;
-  color: var(--color-red);
+  color: var(--color-orange);
   font-weight: 700;
   margin: 20px 0 10px 0;
 }
@@ -1139,7 +1139,7 @@ h1, h2, h3, h4, h5, h6 {
 .error-404 h2 {
   font-size: 24px;
   font-weight: 700;
-  color: var(--color-red);
+  color: var(--color-orange);
   margin-bottom: 30px;
 }
 .error-404 .btn {
@@ -1167,13 +1167,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 .footer .copyright {
   text-align: center;
-  color: var(--color-red);
+  color: var(--color-orange);
 }
 .footer .credits {
   padding-top: 5px;
   text-align: center;
   font-size: 13px;
-  color: var(--color-red);
+  color: var(--color-orange);
 }
 
 /*--------------------------------------------------------------

@@ -136,12 +136,12 @@ class VentasSemanalController extends Controller
     
                             $grupoBusca = DB::select("SELECT idGrupo FROM productos AS p
                             LEFT JOIN grupos_productos AS gp ON p.id = gp.idProducto
-                            WHERE p.nombre LIKE '$producto'");
+                            WHERE p.nombre LIKE '$producto' AND estatus = 0");
                             if($grupoBusca != null){
                                 $grupo = $grupoBusca[0]->idGrupo;
                             }else{
                                 $response['status'] = '1';
-                                $response['msg'] = 'EL PRODUCTO "'.$producto.'" DE LA FILA #'.($key + 1).' NO EXISTE EN LA BASE DE DATOS, DEBES DARLO DE ALTA';
+                                $response['msg'] = 'EL PRODUCTO "'.$producto.'" DE LA FILA #'.($key + 1).' NO EXISTE EN LA BASE DE DATOS O ESTA DESHABILITADO, DEBES DARLO DE ALTA';
                                 break;
                             }
                             if(in_array('g'.$grupo,$ticket)){
@@ -219,7 +219,7 @@ class VentasSemanalController extends Controller
 
 
             // //////////////////////////////////////////////////////////////////////// ESTILOS SECCION DATOS 
-            $styleArrayDatos = $this->generarEstiloCelda(['horizontal' => Alignment::HORIZONTAL_RIGHT,'argb' => hacerColorMasClaro($g->color),'bold' => false],true,true);
+            $styleArrayDatos = $this->generarEstiloCelda(['horizontal' => Ali5gnment::HORIZONTAL_RIGHT,'argb' => hacerColorMasClaro($g->color),'bold' => false],true,true);
             $rangeDatos = $letra.'3:'.siguienteLetra(siguienteLetra($letra)).$tablaTotal;
             $sheet->getStyle($rangeDatos)->applyFromArray($styleArrayDatos);
             // /////////////////////////////////

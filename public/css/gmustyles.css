@@ -54,16 +54,16 @@ table.styled-table thead th, table.styled-table thead td {
 }
 
 .styled-table tbody tr:last-of-type {
-    border-bottom: 2px solid var(--color-red);
+    border-bottom: 2px solid var(--color-orange);
 }
 
 .styled-table tbody tr.active-row {
     font-weight: bold;
-    color: var(--color-red);
+    color: var(--color-orange);
 }
 
 .styled-table tbody tr:hover {
-    background: rgba(255, 0, 0, 0.116);
+    background: rgba(255, 152, 55, 0.322);
 }
 
 .lefti {
@@ -86,7 +86,7 @@ table.styled-table thead th, table.styled-table thead td {
 /* -----------------------------------------------------------------------INPUT------------------------------------------------------------------------------ */
 .thfilter {
     border-radius: 10px !important;
-    border: 2px solid var(--color-red);
+    border: 2px solid var(--color-orange);
     width: 100%;
     padding: 1px;
     margin: 0px;
@@ -161,11 +161,11 @@ table.styled-table thead th, table.styled-table thead td {
 /*---------------------------------------------------------------------- MODAL ----------------------------------------------------------------------*/
 .modal-header{
     font-family: "Open Sans", sans-serif;
-    background: linear-gradient(90deg, #62d8ff44, #83e0ff42);
+    background-color: #FF9937;
 }
 .modal-footer{
     font-family: "Open Sans", sans-serif;
-    background: linear-gradient(90deg, #62d8ff44, #83e0ff42);
+    background-color: #FF9937;
 }
 .select2 {
     color: #3f3f3f !important;
@@ -206,7 +206,7 @@ table.styled-table thead th, table.styled-table thead td {
 .titulomodal
 {
     font-weight: bold;
-    color: var(--color-red);
+    color: #FFFFFF;
 }
 .subtitulomodal
 {

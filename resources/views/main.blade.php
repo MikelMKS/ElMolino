@@ -103,6 +103,13 @@
         </a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('productos') }}" id="dashPRODUCTOS">
+          <i class="ri-shopping-basket-line"></i>
+          <span>PRODUCTOS</span>
+        </a>
+      </li>
+
     </ul>
 
   </aside><!-- End Sidebar-->
